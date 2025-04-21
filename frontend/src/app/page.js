@@ -133,8 +133,20 @@ export default function Home() {
     <div className="flex flex-col gap-y-10 min-h-screen justify-center items-center mx-auto">
      
       <h1 className="m-4 text-xl font-bold">Upload Files for Analysis</h1>
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
-        <input className="hover:cursor-pointer" type="file" onChange={handleFileChange} ref={fileInputRef} name="files" multiple />
+      <form encType="multipart/form-data" onSubmit={handleSubmit} className="flex flex-row gap-4 items-start">
+        <label htmlFor="file-upload" className="bg-blue-500 rounded-md p-2 cursor-pointer hover:bg-blue-400 text-white transition">Select Files</label>
+        <input id="file-upload" className="hidden" type="file" onChange={handleFileChange} ref={fileInputRef} name="files" multiple />
+        <div className="text-sm text-gray-700">
+          {files.length > 0 ? (
+            <ul className="list-disc list-inside">
+              {files.map((file, idx) => (
+                <li key={idx}>{file.name}</li>
+              ))}
+            </ul>
+          ) : (
+            <span className="italic text-gray-500">No files selected</span>
+          )}
+        </div>
         <button
           type="submit"
           className="bg-slate-500 text-white p-5 rounded-md hover:cursor-pointer"
@@ -145,14 +157,16 @@ export default function Home() {
       {downloadUrl && (
         <div className="text-xl font-thin">
           <h2>Download your processed report:</h2>
-          <a
-            className="hover:underline hover:text-blue-500"
-            href={downloadUrl}
-            download="report.html"
-            onClick={handleDownload}
-          >
-            Download Report
-          </a>
+          <div className="mt-5 text-center">
+            <a
+                className="border border-black bg-blue-500 rounded-md p-3 text-center text-white hover:cursor-pointer hover:bg-blue-400"
+                href={downloadUrl}
+                download="report.html"
+                onClick={handleDownload}
+              >
+                Download Report
+            </a>  
+          </div>
         </div>
       )}
 

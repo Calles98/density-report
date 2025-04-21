@@ -1,0 +1,16 @@
+* * * * * * *
+*  Packages *
+* * * * * * *
+    - Notebooks:    
+        - Plotly version 6.0.1
+        - numpy
+        - pandas
+            
+    - app.py 
+        - flask
+        - flask-cors
+        - nbconvert
+
+* Make sure the notebook kernels are the same enviroment as the backend enviroment
+
+            
